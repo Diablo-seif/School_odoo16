@@ -5,4 +5,4 @@ class Skills(models.Model):
     _description = 'Skills'
 
     name = fields.Char(string="Name", required=True)
-    students = fields.Many2many(comodel_name="students.students", relation="", column1="", column2="", string="Students", )
+    students_id = fields.Many2many(comodel_name="students.students", string="Students", )

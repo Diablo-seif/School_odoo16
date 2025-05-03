@@ -11,20 +11,21 @@
                             <group string="ID">
                                 <field name="name"/>
                                 <field name="gender"/>
-                                <field name="track_id"/>
+                                <field name="track_id"
+                                            domain="[('is_open','=',True)]"/>
+                                <field name="capacity_track"/>
                                 <field name="age"/>
                                 <field name="accepted"/>
-                                <field name="skills_id"
+                                <field name="skills_ids"
                                    widget="many2many_tags" />
 
 
                             </group>
-                            <group  string="Image">
+                            <group string="Image">
 
-                                        <field  name="img"
-                                                widget="image" />
+                                        <field  name="img" widget="image" />
 
-                        </group>
+                            </group>
                         </group>
 
                         <group>
@@ -32,7 +33,8 @@
                         <group string="Data">
 
                             <field name="salary"/>
-                            <field name="birth_date"/>
+                            <field name="birth_date"
+                            attrs="{'invisible': [('gender', '=', 'f')]}"/>
                             <field name="login_time"/>
 
                         </group>
@@ -44,6 +46,9 @@
                         <page string="location">
                         <field name="add"/>
                         </page>
+<!--                        <page string="Grade">-->
+<!--                        <field name="grade_ids"/>-->
+<!--                        </page>-->
 
                     </notebook>
                 </sheet>
