@@ -1,0 +1,80 @@
+<odoo>
+  <data>
+    <record id="Students_form" model="ir.ui.view">
+        <field name="name">Students Form</field>
+        <field name="model">students.students</field>
+        <field name="arch" type="xml">
+            <form string="Students">
+                <sheet>
+
+                        <group>
+                            <group string="ID">
+                                <field name="name"/>
+                                <field name="gender"/>
+                                <field name="track_id"/>
+                                <field name="age"/>
+                                <field name="accepted"/>
+                                <field name="skills_id"
+                                   widget="many2many_tags" />
+
+
+                            </group>
+                            <group  string="Image">
+
+                                        <field  name="img"
+                                                widget="image" />
+
+                        </group>
+                        </group>
+
+                        <group>
+
+                        <group string="Data">
+
+                            <field name="salary"/>
+                            <field name="birth_date"/>
+                            <field name="login_time"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="des"/>
+                        </page>
+                        <page string="location">
+                        <field name="add"/>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="Students_tree" model="ir.ui.view">
+        <field name="name">Students Tree</field>
+        <field name="model">students.students</field>
+        <field name="arch" type="xml">
+            <tree string="Students">
+
+                        <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="students.action_window" model="ir.actions.act_window">
+      <field name="name">Students</field>
+      <field name="res_model">students.students</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="School_cat" name="School" sequence="1"/>
+
+
+    <menuitem id="Students_root" name="Students" parent="School_cat" action="students.action_window" sequence="2"/>
+
+
+
+
+  </data>
+</odoo>

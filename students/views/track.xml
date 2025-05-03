@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+    <record id="Track_form" model="ir.ui.view">
+        <field name="name">Track_Form</field>
+        <field name="model">track.track</field>
+        <field name="arch" type="xml">
+            <form string="Track">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="is_open"/>
+                        <field name="capacity"/>
+                        <field name="Student_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="Track_tree" model="ir.ui.view">
+        <field name="name">Track_Tree</field>
+        <field name="model">track.track</field>
+        <field name="arch" type="xml">
+            <tree string="Track">
+                <field name="name"/>
+                <field name="Student_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="Track_action_window" model="ir.actions.act_window">
+      <field name="name">Track</field>
+      <field name="res_model">track.track</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <menuitem id="Track_root" name="Track" parent="School_cat" action="Track_action_window" sequence="3"/>
+
+
+
+  </data>
+</odoo>
