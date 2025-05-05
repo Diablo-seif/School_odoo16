@@ -67,7 +67,7 @@
         </field>
     </record>
 
-    <record id="students.action_window" model="ir.actions.act_window">
+    <record id="students_action_window" model="ir.actions.act_window">
       <field name="name">Students</field>
       <field name="res_model">students.students</field>
       <field name="view_mode">tree,form</field>
