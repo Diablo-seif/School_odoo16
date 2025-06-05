@@ -76,7 +76,7 @@
     <menuitem id="School_cat" name="School" sequence="1"/>
 
 
-    <menuitem id="Students_root" name="Students" parent="School_cat" action="students.action_window" sequence="2"/>
+    <menuitem id="Students_root" name="Students" parent="School_cat" action="students_action_window" sequence="2"/>
 
 
 
