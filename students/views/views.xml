@@ -12,7 +12,7 @@
                                 <field name="name"/>
                                 <field name="gender"/>
                                 <field name="track_id"
-                                            domain="[('is_open','=',True)]"/>
+                                            domain="[('is_open','=',False)]"/>
                                 <field name="capacity_track"/>
                                 <field name="age"/>
                                 <field name="accepted"/>
