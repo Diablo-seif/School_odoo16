@@ -35,6 +35,7 @@
                             <field name="salary"/>
                             <field name="birth_date"
                             attrs="{'invisible': [('gender', '=', 'f')]}"/>
+<!--                          { < 	,  &lt;}      {>	, &gt; }    {<= , &lt;=}    	 {>= , &gt;=}        -->
                             <field name="login_time"/>
 
                         </group>
