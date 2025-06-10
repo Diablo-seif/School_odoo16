@@ -2,5 +2,12 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_students_students,students.students,model_students_students,base.group_user,1,1,1,1
 access_track_track,track.track,model_track_track,base.group_user,1,1,1,1
 access_skills_skills,skills.skills,model_skills_skills,base.group_user,1,1,1,1
+access_students_course,students.course,model_students_course,base.group_user,1,1,1,1
+access_students_course_line,students.course.line,model_students_course_line,base.group_user,1,1,1,1
+
+
+
+
+
 
 
