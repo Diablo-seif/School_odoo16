@@ -1,5 +1,3 @@
-from docutils.nodes import title
-
 from odoo import models, fields,api
 
 class Students(models.Model):
@@ -16,25 +14,61 @@ class Students(models.Model):
     add = fields.Text(string= "Address")
     des = fields.Text(string= "Description")
     birth_date = fields.Date(string="Birth")
-    login_time = fields.Datetime(string="Login Time" )
     track_id = fields.Many2one(comodel_name="track.track", string="Track", required=False, )
-    capacity_track = fields.Integer(string="Capacity", related="track_id.capacity", )
+    capacity_track = fields.Integer(string="Capacity of track", related="track_id.capacity", )
     skills_ids = fields.Many2many(comodel_name="skills.skills", string="Skills", )
-    # grade_ids = fields.One2many(comodel_name="student.course.line", inverse_name="student_id", string="Skills", )
-    @api.onchange("gender")
-    def _on_change_gender(self):
-        if self.gender =='m':
-            self.salary=10000
-        else:
-            self.salary=5000
-        return {
-            'warning': {
-                'title' : 'You changed of gender',
-                'message' :'will be change salary automation\n'
-                           'salary of Male = 10000\n'
-                           'salary of Female = 5000' ,
+    login_time = fields.Datetime(string="Login Time" )
+    #               ( 'invisible') == hidden      /      ('readonly') != must_write      /     ('required') == must_write
+    grade_id = fields.One2many(comodel_name="students.course.line", inverse_name="student_id", string="Grade")
+
+    class StudentCourse(models.Model):
+        _name = 'students.course'
+        _description = 'students.course'
+
+        name = fields.Char(string="Name", required=True, )
+
+    class StudentCourseGrades(models.Model):
+        _name = 'students.course.line'
+        _description = 'students.course.line'
+
+        student_id = fields.Many2one(comodel_name="students.students")
+        course_id = fields.Many2one(comodel_name="students.course")
+        grade = fields.Selection(string="Grade", selection=[('g', 'Good'), ('vg', 'Very Good'), ])
+
+
+
+    @api.onchange('gender')
+    def onchange_gender(self):
+        if not self.gender : # if not choice
+            self.salary = 10000
+            return {}
+
+        elif self.gender == 'm' :
+            self.salary = 10000
+            return {
+                "warning": {
+                    'title': 'Gender Changed to Male ',
+                    'message': 'salary to be 10000 '
+                },
+                "domain": {
+                    "track_id": [('is_open', '=', False)]
+                }
             }
-        }
+        elif self.gender == 'f' :
+            self.salary = 5000
+            return {
+                "warning": {
+                    'title': 'Gender Changed to Female',
+                    'message': 'salary to be 5000 '
+                },
+                "domain": {
+                    "track_id": [('is_open', '=', False)]
+                }
+            }
+        else :
+            return {}
+
+
 
 
 # class Course(models.Model):
