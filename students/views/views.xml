@@ -1,62 +1,63 @@
 <odoo>
   <data>
+<!-- ############################################################################################################### -->
     <record id="Students_form" model="ir.ui.view">
         <field name="name">Students Form</field>
         <field name="model">students.students</field>
         <field name="arch" type="xml">
             <form string="Students">
                 <sheet>
-
-                        <group>
-                            <group string="ID">
-                                <field name="name"/>
-                                <field name="gender"/>
-                                <field name="track_id"
-                                            domain="[('is_open','=',False)]"/>
-                                <field name="capacity_track"/>
-                                <field name="age"/>
-                                <field name="accepted"/>
-                                <field name="skills_ids"
-                                   widget="many2many_tags" />
-
-
+                        <group string="ID">
+                            <group>
+                                        <field name="name"/>
+                                        <field name="track_id"      domain="[('is_open','=',False)]"/> <!-- domain -*for*-> many2one-->
+                                        <field name="capacity_track"/>
                             </group>
-                            <group string="Image">
-
-                                        <field  name="img" widget="image" />
-
+                            <group>
+                                        <field  name="img"      widget="image" />
                             </group>
                         </group>
-
-                        <group>
 
                         <group string="Data">
-
-                            <field name="salary"/>
-                            <field name="birth_date"
-                            attrs="{'invisible': [('gender', '=', 'f')]}"/>
+                                        <field name="gender"/>
+                                        <field name="age"/>
+                                        <field name="salary"/>
+                                        <field name="accepted"/>
+                                        <field name="birth_date"      attrs="{'invisible': [('gender', '=', 'f')]}"/>
 <!--                          { < 	,  &lt;}      {>	, &gt; }    {<= , &lt;=}    	 {>= , &gt;=}        -->
-                            <field name="login_time"/>
-
+<!--                            'invisible' == hidden      /      'readonly' != must_write      /     'required' == must_write -->
+<!--                             attrs="{'invisible': ['|',('gender', '=', 'f'),('gender', '=', 'm')]}"/>  --> <!-- '|'  == or -->
+                                        <field name="skills_ids"      widget="many2many_tags" />
+                                        <field name="login_time"/>
                         </group>
-                    </group>
+
                     <notebook>
                         <page string="Description">
-                            <field name="des"/>
+                                <group>
+                                        <field name="des"/>
+                                </group>
                         </page>
                         <page string="location">
-                        <field name="add"/>
+                                <group>
+                                        <field name="add"/>
+                                </group>
                         </page>
-<!--                        <page string="Grade">-->
-<!--                        <field name="grade_ids"/>-->
-<!--                        </page>-->
 
+
+                        <page string="Grade">
+                                        <field name="grade_id">
+                                            <tree>
+                                                   <field name="course_id"/>
+                                                   <field name="grade"/>
+                                            </tree>
+                                        </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
-
+<!-- ############################################################################################################### -->
     <record id="Students_tree" model="ir.ui.view">
         <field name="name">Students Tree</field>
         <field name="model">students.students</field>
@@ -64,21 +65,21 @@
             <tree string="Students">
 
                         <field name="name"/>
+                        <field name="track_id"/>
+
             </tree>
         </field>
     </record>
-
-    <record id="students_action_window" model="ir.actions.act_window">
+<!-- ############################################################################################################### -->
+    <record id="students.action_window" model="ir.actions.act_window">
       <field name="name">Students</field>
       <field name="res_model">students.students</field>
       <field name="view_mode">tree,form</field>
     </record>
-
+<!-- ############################################################################################################### -->
     <menuitem id="School_cat" name="School" sequence="1"/>
-
-
-    <menuitem id="Students_root" name="Students" parent="School_cat" action="students_action_window" sequence="2"/>
-
+    <menuitem id="Students_root" name="Students" parent="School_cat" action="students.action_window" sequence="2"/>
+<!-- ############################################################################################################### -->
 
 
 
