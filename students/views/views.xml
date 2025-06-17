@@ -6,6 +6,14 @@
         <field name="model">students.students</field>
         <field name="arch" type="xml">
             <form string="Students">
+                <header>
+<!--                    <button name="name_of_def_to_change" string="" class="oe_highlight" states="name selection = ,'2' " type="object"/>-->
+                    <button name="change_state"       string="Set First Interview"  class="oe_highlight" states="a"   type="object"/>
+                    <button name="change_state"       string="Set Second Interview" class="oe_highlight" states="f"   type="object"/>
+                    <button name="set_state_passed"   string="Set Passed"           class="oe_highlight" states="s"   type="object"/>
+                    <button name="set_state_rejected" string="Set Rejected"         class="oe_highlight" states="s"   type="object"/>
+                    <button name="change_state"       string="Back to Applied"      class="oe_highlight" states="p,r" type="object"/>
+                </header>
                 <sheet>
                         <group string="ID">
                             <group>
