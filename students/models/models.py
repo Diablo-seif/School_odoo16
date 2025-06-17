@@ -20,7 +20,22 @@ class Students(models.Model):
     login_time = fields.Datetime(string="Login Time" )
     #               ( 'invisible') == hidden      /      ('readonly') != must_write      /     ('required') == must_write
     grade_id = fields.One2many(comodel_name="students.course.line", inverse_name="student_id", string="Grade")
+    state = fields.Selection(string="State", selection=[('a', 'Applied'),('f', 'First Interview'),
+                                                        ('s', 'Second Interview'),('p', 'Passed'),
+                                                        ('r', 'Rejected'),], required=False, default="a")
 
+    def change_state(self):
+            if self.state == "a":
+                self.state = "f"
+            elif self.state == "f":
+                self.state = "s"
+            elif self.state in ["p","r"]:
+                self.state = "a"
+
+    def set_state_passed(self):
+                self.state = "p"
+    def set_state_rejected(self):
+                self.state = "r"
     class StudentCourse(models.Model):
         _name = 'students.course'
         _description = 'students.course'
