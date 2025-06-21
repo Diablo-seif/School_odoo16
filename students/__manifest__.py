@@ -30,6 +30,9 @@
         'views/track.xml',
         'views/skills.xml',
         'views/templates.xml',
+        # 'report/templates.xml',
+        # 'report/report.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
