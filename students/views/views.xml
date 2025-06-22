@@ -15,16 +15,22 @@
                     <button name="change_state"       string="Back to Applied"      class="oe_highlight" states="p,r" type="object"/>
                 </header>
                 <sheet>
-                        <group string="ID">
-                            <group>
-                                        <field name="name"/>
-                                        <field name="track_id"      domain="[('is_open','=',False)]"/> <!-- domain -*for*-> many2one-->
+                        <div class="oe_title" >
+                            <label for ="name"/>
+                                <h1> <field name="name"/> </h1>
+                            <label for ="code"/>
+                                <h2> <field name="code"/> </h2>
+                        </div>
+                        <group>
+                            <div>
+                                <field  name="img"      widget="image" />
+
+                            </div>
+                        </group>
+                        <group string="Data">
+                                        <field name="track_id" /> <!-- domain -*for*-> many2one-->
                                         <field name="capacity_track"/>
                             </group>
-                            <group>
-                                        <field  name="img"      widget="image" />
-                            </group>
-                        </group>
 
                         <group string="Data">
                                         <field name="gender"/>
@@ -71,13 +77,30 @@
         <field name="model">students.students</field>
         <field name="arch" type="xml">
             <tree string="Students">
-
-                        <field name="name"/>
+                        <field name="code"  />
+                        <field name="name"  />
                         <field name="track_id"/>
+                        <field name="accepted" optional="1"/>
+                        <field name="add" optional="1"/>
 
             </tree>
         </field>
     </record>
+<!-- ############################################################################################################### -->
+      <record id="Students_search" model="ir.ui.view">
+         <field name="name">Students Tree</field>
+         <field name="model">students.students</field>
+          <field name="arch" type="xml">
+              <search string="">
+            <field name="code" string="name" />
+            <field name="name" string="name" />
+            <filter name="is_accepted" string="with Work inside company" domain="[('accepted','=',True)]"/>
+            <filter name="is_not_accepted" string="without Work inside company" domain="[('accepted','!=',True)]"/>
+
+            <filter name="group_accepted" string="Work inside company" context="{'group_by' : 'accepted' }"/>
+          </search>
+         </field>
+      </record>
 <!-- ############################################################################################################### -->
     <record id="students.action_window" model="ir.actions.act_window">
       <field name="name">Students</field>
