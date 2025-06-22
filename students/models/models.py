@@ -6,7 +6,7 @@ class Students(models.Model):
     _rec_name= "name"
 
     name = fields.Char(string="Name",default="Eng.",)
-    code = fields.Integer(string="Code", required=True,default=0000 )
+    code = fields.Integer(string="ID", required=True,default=0000 )
     gender = fields.Selection(string="Gender", selection=[('m', 'Male'), ('f', 'Female'), ])
     age = fields.Integer(string="Age")
     img = fields.Binary(string="Img")
