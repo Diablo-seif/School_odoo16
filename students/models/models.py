@@ -6,6 +6,7 @@ class Students(models.Model):
     _rec_name= "name"
 
     name = fields.Char(string="Name",default="Eng.",)
+    code = fields.Integer(string="Code", required=True,default=0000 )
     gender = fields.Selection(string="Gender", selection=[('m', 'Male'), ('f', 'Female'), ])
     age = fields.Integer(string="Age")
     img = fields.Binary(string="Img")
@@ -65,9 +66,6 @@ class Students(models.Model):
                     'title': 'Gender Changed to Male ',
                     'message': 'salary to be 10000 '
                 },
-                "domain": {
-                    "track_id": [('is_open', '=', False)]
-                }
             }
         elif self.gender == 'f' :
             self.salary = 5000
@@ -76,12 +74,11 @@ class Students(models.Model):
                     'title': 'Gender Changed to Female',
                     'message': 'salary to be 5000 '
                 },
-                "domain": {
-                    "track_id": [('is_open', '=', False)]
-                }
             }
         else :
             return {}
+
+
 
 
 
