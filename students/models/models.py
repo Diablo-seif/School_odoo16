@@ -25,6 +25,7 @@ class Students(models.Model):
                                                         ('s', 'Second Interview'),('p', 'Passed'),
                                                         ('r', 'Rejected'),], required=False, default="a")
 
+
     def change_state(self):
             if self.state == "a":
                 self.state = "f"
@@ -83,36 +84,14 @@ class Students(models.Model):
 
 
 
-# class Course(models.Model):
-#     _name = 'course.course'
-#
-#     name = fields.Char(string="Name")
-#
-# class StudentCourseGrades(models.Model):
+class Course(models.Model):
+    _name = 'course.course'
 
+    name = fields.Char(string="Name")
 
-
-# choice data type
-
-# from odoo import models, fields,api
-# class S (models.Model):
-#     integer = fields.Integer(string="", required=False, )
-#     float = fields.Float(string="",  required=False, )
-#     # ---------------------------------------------------#
-#     name = fields.Char(string="", required=False, )
-#     text = fields.Text(string="", required=False, )
-#     # ---------------------------------------------------#
-#     True_or_false = fields.Boolean(string="",  ) #
-#     choice = fields.Selection(string="Gender", selection=[('m', 'Male'), ('f', 'Female'), ]) #
-#     # ---------------------------------------------------#
-#     img = fields.Binary(string="Img")
-#     # ---------------------------------------------------#
-#     
-#     date_of_day = fields.Date(string="", required=False, )
-#     date_of_day_and_H = fields.Datetime(string="", required=False, )
-#     # ---------------------------------------------------#
-#     many2many = fields.Many2one(comodel_name="", string="", required=False, )
-#     many2one  = fields.Many2one(comodel_name="", string="", required=False, )ny
-#     one2many  = fields.One2many(comodel_name="", inverse_name="", string="", required=False, )
-#     # ---------------------------------------------------#
-
+class StudentCourseGrades(models.Model):
+    _name = "student.course.line"
+    student_id = fields.Many2one(comodel_name="students.students", string="Student")
+    course_id = fields.Many2one(comodel_name="course.course", string="Course")
+    grade = fields.Selection(string="Grade", selection=[('g', 'Good'), ('vg', 'Very Good')])
+    
