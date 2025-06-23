@@ -5,7 +5,7 @@
         <field name="name">Students Form</field>
         <field name="model">students.students</field>
         <field name="arch" type="xml">
-            <form string="Students">
+            <form string="Students" create ="1" edit="1"  delete="1" > <!-- (access security) - create  - edit  - delete  -->
                 <header>
 <!--                    <button name="name_of_def_to_change" string="" class="oe_highlight" states="name selection = ,'2' " type="object"/>-->
                     <button name="change_state"       string="Set First Interview"  class="oe_highlight" states="a"   type="object"/>
@@ -14,12 +14,11 @@
                     <button name="set_state_rejected" string="Set Rejected"         class="oe_highlight" states="s"   type="object"/>
                     <button name="change_state"       string="Back to Applied"      class="oe_highlight" states="p,r" type="object"/>
                 </header>
+
                 <sheet>
                         <div class="oe_title" >
                             <label for ="name"/>
-                                <h1> <field name="name"/> </h1>
-                            <label for ="code"/>
-                                <h2> <field name="code"/> </h2>
+                                <h1>  <field name="name"/> </h1>
                         </div>
                         <group>
                             <div>
@@ -28,7 +27,8 @@
                             </div>
                         </group>
                         <group string="Data">
-                                        <field name="track_id" /> <!-- domain -*for*-> many2one-->
+                                        <field name="track_id" />  <!-- domain -*for*-> many2one-->
+                                        <field name="code"/>
                                         <field name="capacity_track"/>
                             </group>
 
@@ -108,7 +108,7 @@
       <field name="view_mode">tree,form</field>
     </record>
 <!-- ############################################################################################################### -->
-    <menuitem id="School_cat" name="School" sequence="1"/>
+    <menuitem id="School_cat" name="School" web_icon="students,static/description/icon.png" sequence="1"/>
     <menuitem id="Students_root" name="Students" parent="School_cat" action="students.action_window" sequence="2"/>
 <!-- ############################################################################################################### -->
 
